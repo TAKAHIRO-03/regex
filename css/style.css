@@ -11,12 +11,8 @@ body{
 }
 .inputlayout{
     text-align: center;
-    height: 100%;
+    height: 150px;
     width: 100%;
-}
-form{
-    width:100%;
-    height:150px;
 }
 
 .inputlayout p,textarea{
@@ -25,7 +21,7 @@ form{
 
 .matchbox{
     width: 100%;
-    height: 100%;
+    height: 50px;
 }
 
 .matchbox p{
@@ -40,6 +36,7 @@ footer{
     height: 100%;
     width: 100%;
 }
+
 #radio_layout{
     margin: auto;
     width: 170px;
@@ -48,11 +45,35 @@ footer{
 .fotter_address{
     width: 100%;
     margin: 0 auto;
-    background: white;
+    background: #fffacd;
     text-align: center;
     color: #666;
     padding: 10px 0;
     margin-top: 5px;
     font-size: 13px;
+}
+
+table{
+    display: table;
+    border-collapse: separate;
+    border-spacing: 2px;
+    border-color: grey;
+}
+table td {
+    border: 1px solid #ddd;
+    padding: 7px;
+}
+
+.table_layout{
+    height: 100%;
+    width: 100%;
+}  
+
+.table_layout p{
+    font-size: 30px;
     text-align: center;
+}
+
+.table_layout table{
+    margin: 0 auto;
 }
