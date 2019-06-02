@@ -77,3 +77,12 @@ table td {
 .table_layout table{
     margin: 0 auto;
 }
+
+.match ul {
+    margin-top: 0;
+    list-style: none;
+}
+
+.match p{
+    margin-bottom: 0;
+}
