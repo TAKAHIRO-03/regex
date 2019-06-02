@@ -1,0 +1,58 @@
+@charset "utf-8";
+
+h1 {
+   background-color:#00bfff;  
+   color:#ffffff;
+   text-align: center;
+}
+body{
+    width: 70%;
+    margin: 0 auto;
+}
+.inputlayout{
+    text-align: center;
+    height: 100%;
+    width: 100%;
+}
+form{
+    width:100%;
+    height:150px;
+}
+
+.inputlayout p,textarea{
+    float: left;
+}
+
+.matchbox{
+    width: 100%;
+    height: 100%;
+}
+
+.matchbox p{
+    float: left;
+    margin: 0 auto;
+}
+
+.matchbox input{
+    text-align: left;
+}
+footer{
+    height: 100%;
+    width: 100%;
+}
+#radio_layout{
+    margin: auto;
+    width: 170px;
+ }
+
+.fotter_address{
+    width: 100%;
+    margin: 0 auto;
+    background: white;
+    text-align: center;
+    color: #666;
+    padding: 10px 0;
+    margin-top: 5px;
+    font-size: 13px;
+    text-align: center;
+}
