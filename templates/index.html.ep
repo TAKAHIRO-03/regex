@@ -1,3 +1,6 @@
+<%
+  my $error = stash('error');
+%>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -9,26 +12,27 @@
     <header>
         <h1>正規表現を体験してみよう！</h1>
     </header>
-      <form action="#" method="post">
+      <form action="<%= url_for %>" method="post">
         <div class="inputlayout">
             <p>マッチさせたい文字を入力：</p>
-                <textarea name="textarea1" rows="5" cols="120"></textarea><br>
+                <%= text_area 'message', style => "width:740px; height:70px" %><br>
                 <div id="radio_layout">
                     <p>
-                        <input type="radio" name="riyu" value="1" checked="checked">改行有り
-                        <input type="radio" name="riyu" value="2">改行無し
+                        <%= radio_button private => 1 , checked => 'checked' %>改行有り
+                        <%= radio_button private => 0%>改行無し
                     </p>
                 </div>
         </div>
         <div class="matchbox">
             <p>正規表現を入力：</p>
             <p>
-                <input type="text" name="name" size="30" maxlength="20"></td>
-                <input type="submit" name="button"/>
+                <%= text_field 'regex', style => "width:230px; height:19px" %>
+                <%= submit_button '送信', id => 'submit', name=>'match' %>
+                <%= $error %>
             </p>
         </div>
        </form>
-    </br>
+        </br>
         <div class="table_layout">
             <p>正規表現の文字</p>
             <table>
@@ -232,62 +236,46 @@
             </table>
         </div>
         <div class="table_layout">
-            <p>その他</p>
+            <p>優先順位</p>
             <table>
                     <tbody><tr>
                     <td>
-                        g
+                        ①(...),(?:...),(?<LABEL>...)
                     </td>
                     <td>
-                        パターンマッチを繰り返す
-                    </td>
-                    </tr>
-                    <tr>
-                    <td>
-                        s
-                    </td>
-                    <td>
-                        「.」を改行にマッチさせる
+                        カッコ（グループ化または記憶）。LABELの部分は名前付きキャプチャ
                     </td>
                     </tr>
                     <tr>
                     <td>
-                        m
+                        ②a*,a+,a?,a{n,m}
                     </td>
                     <td>
-                        「^」と「$」を行の先頭と末尾にマッチさせる
-                    </td>
-                    </tr>
-                    <tr>
-                    <td>
-                        i
-                    </td>
-                    <td>
-                        大文字と小文字を区別しないでマッチさせる
+                        量指定子
                     </td>
                     </tr>
                     <tr>
                     <td>
-                        e
+                        ③abc,^a,a$
                     </td>
                     <td>
-                        置換に式を利用する
-                    </td>
-                    </tr>
-                    <tr>
-                    <td>
-                        x
-                    </td>
-                    <td>
-                        正規表現内のスペースを無視する
+                        アンカーと並び
                     </td>
                     </tr>
                     <tr>
                     <td>
-                        o
+                        ④a|b|c
                     </td>
                     <td>
-                        変数展開を一度だけ行う
+                        選択肢
+                    </td>
+                    </tr>
+                    <tr>
+                    <td>
+                        ⑤a,[abc],\d,\1
+                    </td>
+                    <td>
+                        アトム
                     </td>
                     </tr>
                 </tbody>
