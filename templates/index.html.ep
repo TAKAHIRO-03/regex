@@ -19,7 +19,7 @@
                 <div id="radio_layout">
                     <p>
                         <%= radio_button private => 1 , checked => 'checked' %>改行有り
-                        <%= radio_button private => 0%>改行無し
+                        <%= radio_button private => 0 %>改行無し
                     </p>
                 </div>
         </div>
@@ -31,6 +31,13 @@
                 <%= $error %>
             </p>
         </div>
+            <p>オプション：
+                <%= check_box opt => 'g' %>g　
+                <%= check_box opt => 's' %>s　
+                <%= check_box opt => 'm' %>m　
+                <%= check_box opt => 'i' %>i　
+                <%= check_box opt => 'o' %>o　
+            </p>
        </form>
         </br>
         <div class="table_layout">

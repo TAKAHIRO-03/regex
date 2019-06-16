@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>正規表現を体験してみよう！</title>
+<link href="css/style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <header>
+        <h1>正規表現を体験してみよう！</h1>
+    </header>
+        <p><%= $message %></p>
+        <a href="/">戻る</a>
+    <footer>
+        <div class="fotter_address">Copy right 2019 :Kobayashi Takahiro.</div>
+    </footer>
+</body>
+</html>

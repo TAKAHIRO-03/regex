@@ -12,14 +12,13 @@
         <div class="match">
         <p>結果①</p>
             <ul>
+                <li>正規表現：<span><%= flash('regex') %></span></li>
                 <li>マッチした文字：　<span>NULL</span></li>
                 <li>マッチした前の部分：　<span>NULL</span></li>
                 <li>マッチした後の部分：　<span>NULL</span></li>
             </ul>
         </div>
-         <form action="<%= url_for %>" method="post">
-            <a href="/">戻る</a>
-        </form>
+        <a href="/">戻る</a>
     <footer>
         <div class="fotter_address">Copy right 2019 :Kobayashi Takahiro.</div>
     </footer>
