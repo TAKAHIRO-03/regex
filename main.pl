@@ -23,6 +23,8 @@ post '/' => sub{
   my $opt = $self->every_param('opt');
   my $opt_len = scalar(@$opt);
   my $option = "";
+  my $regstr;
+  my $regex_opt;
   #オプションを連結
   for (my $i = 0; $i < $opt_len; $i++) {
     if (defined ($opt->[$i])){
@@ -40,50 +42,15 @@ post '/' => sub{
   return $self->render(template => 'error', message  => 'Please input text')
     unless $message;
 
-   my $regex_2 = qr/ $regex /x . $option;
-   say $regex_2;
-
-  #     my $persons = [
-  #   ['Ken', 'Japan', 19],
-  #   ['Taro', 'USA', 45]
-  #  ];
-  # say $regex;
-  # say $message;
-
-  # my $regex2 = $regex;
-  # say $regex2;
-
-  # #正規表現
-  # if($message =~ /$regex/s){
-  #   say $message =~ /$regex/ . "i";
-  #   say "出力されたよ"
-  # }
-
-
-  # my $matches;
-  # if($private){
-  #   for (my $j = 0; $j <= $record_len; $j++ ){
-  #     if($record[$j] =~ m/$regex/){
-  #         $matches = [($`),($&),($')];
-  #         say "出力されたよ1";
-  #     }
-  #   }
-  # }else{
-  #   if($message =~ m/$regex/){
-  #       say "出力されたよ2";
-  #   }
-  # }
-  # say $regex;
-  # my $len = @opt;
-  # say $len;
+   $regstr = "qr/$regex/$option";
+   eval '$regex_opt = ' . $regstr;
+   say $regstr;
+   say $regex_opt;
 
   # フラッシュに保存
   $self->flash(regex => $regex);
   $self->flash(private => $private);
   $self->flash(message => $message);
-
-  
-
   $self->render(template => 'result');
 };
 

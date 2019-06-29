@@ -32,7 +32,6 @@
             </p>
         </div>
             <p>オプション：
-                <%= check_box opt => 'g' %>g　
                 <%= check_box opt => 's' %>s　
                 <%= check_box opt => 'm' %>m　
                 <%= check_box opt => 'i' %>i　

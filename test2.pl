@@ -17,7 +17,7 @@ if(/y(.)(.)\2\1/gs){
 
 my $opt = "sm";
 my $regex = qr/(?sm)(\d+)/;
-my $regex_2 = qr/(\d+)/sm;
+my $regex_2 = qr/(\d+)/;
 say $regex;
 say $regex_2;
 
