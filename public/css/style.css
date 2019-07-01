@@ -1,6 +1,6 @@
 @charset "utf-8";
 
-h1 {
+h1{
    background-color:#00bfff;  
    color:#ffffff;
    text-align: center;
@@ -80,9 +80,16 @@ table td {
 
 .match ul {
     margin-top: 0;
+    margin-bottom: 0;
     list-style: none;
 }
 
 .match p{
+    margin-top: 0;
     margin-bottom: 0;
 }
+
+#count_none{
+    display: none;
+}
+

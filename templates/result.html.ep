@@ -1,3 +1,24 @@
+<% 
+my $regstr = stash('regex');
+my $msg_refence = stash('msg_ref');
+my @msg_ref =  @{$msg_refence};
+
+my $private = stash('private');
+my $message = stash('message');
+my $msg_splits;
+my @msg_split;
+
+if($private){
+    $msg_splits = stash('msg_split');
+    @msg_split =  @{$msg_splits};
+}else{
+    @msg_split;
+    push  @msg_split , $message;
+}
+
+my $count = 0;
+
+%>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -10,13 +31,18 @@
         <h1>〜結果〜</h1>
     </header>
         <div class="match">
-        <p>結果①</p>
+        %for my $msg (@msg_ref){
+        <p>結果<%= $count + 1 %></p>
             <ul>
-                <li>正規表現：<span><%= $regex %></span></li>
-                <li>マッチした文字：　<span>NULL</span></li>
-                <li>マッチした前の部分：　<span>NULL</span></li>
-                <li>マッチした後の部分：　<span>NULL</span></li>
+                <li>対象の文字列:<span><%= $msg_split[$count]%></span></li>
+                <li>正規表現：<span><%= $regstr %></span></li>
+                <li>マッチした文字：<span><%= $msg->{matches} %></span></li>
+                <li>マッチした前の部分：<span><%= $msg->{before} %></span></li>
+                <li>マッチした後の部分：<span><%= $msg->{after} %></span></li>
+                <br>
+                <span id="count_none"><%= $count++; %></span>
             </ul>
+        %}
         </div>
         <a href="/">戻る</a>
     <footer>

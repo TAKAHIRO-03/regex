@@ -48,31 +48,32 @@ post '/' => sub{
     unless $message;
   
   #改行有りの場合、リファレンス作成
-  my %matches_msg;
   my @msg_ref;
+  my @msg_split;
   if($private){
-    my @msg_split = split (/\n/, $message);
+    @msg_split = split (/\n/, $message);
     for my $msg (@msg_split){
       if ($msg =~ /$regex_opt/) {
-          %matches_msg = (matches => encode('UTF-8',$&),  before => encode('UTF-8',$`), 
-                                      after => encode('UTF-8',$'));
-          push @msg_ref , \%matches_msg;
+          my %matches_msg = (matches => $&,  before => $`, after => $');
+          push @msg_ref , (\%matches_msg);
       }
     }
   }else{
     if ($message =~ /$regex_opt/) {
-        push @msg_ref,$&;
-        push @msg_ref,$`;
-        push @msg_ref,$';
-        # say Dumper @msg_ref;
+        my %matches_msg = (matches => $&, before => $`, after => $');
+        push @msg_ref , \%matches_msg;
     }
   }
 
-  # フラッシュに保存
-  $self->flash(regex => $regstr);
-  $self->flash(private => $private);
-  $self->flash(message => $message);
-  $self->render(template => 'result',regex => $regstr);
+    my $msg_refen = \@msg_ref;
+    my $msg_splits = \@msg_split;
+  
+   $self->stash(regex => $regstr);
+   $self->stash(private => $private);   
+   $self->stash(msg_ref => $msg_refen);
+   $self->stash(msg_split => $msg_splits);
+   $self->stash(message => $message);
+   $self->render(template =>'result');
 
 };
 
