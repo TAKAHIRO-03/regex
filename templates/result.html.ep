@@ -3,12 +3,12 @@ my $regstr = stash('regex');
 my $msg_refence = stash('msg_ref');
 my @msg_ref =  @{$msg_refence};
 
-my $private = stash('private');
+my $judge_line = stash('judge_line');
 my $message = stash('message');
 my $msg_splits;
 my @msg_split;
 
-if($private){
+if($judge_line){
     $msg_splits = stash('msg_split');
     @msg_split =  @{$msg_splits};
 }else{

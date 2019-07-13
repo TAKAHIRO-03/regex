@@ -17,7 +17,7 @@ get '/' => sub{
 post '/' => sub{
   my $self = shift;
   # パラメーターの取得
-  my $private = $self->param('private');
+  my $judge_line = $self->param('judge_line');
   my $message = $self->param('message');
   my $regex = $self->param('regex');
   my $opt = $self->every_param('opt');
@@ -29,17 +29,10 @@ post '/' => sub{
          $option = "$option" . "$opt->[$i]";
     };
   }
-
   my $regstr;
   my $regex_opt;
-
-  if ($regex =~ /[\p{Han}\p{Hiragana}\p{Katakana}]/) {
-    $regex_opt = $regex;
-  }else{
-    $regstr = "qr/$regex/$option";
-    eval '$regex_opt = ' . $regstr;
-  }
-
+  $regstr = "qr/$regex/$option";
+  eval '$regex_opt = ' . $regstr;
 
   #エラー処理
   return $self->render(template => 'error', message  => 'Please input regex')
@@ -50,26 +43,34 @@ post '/' => sub{
   #改行有りの場合、リファレンス作成
   my @msg_ref;
   my @msg_split;
-  if($private){
-    @msg_split = split (/\n/, $message);
+  my $msg_len;
+  if($judge_line){
+    @msg_split = split (/\x0A/, $message);
+
+    warn "aiueo" . $msg_split[0];
+
+    # warn "BBBBBBBBBB $message";
+    # warn "awjivagjirjijaireij"."\t".scalar(@msg_split);
     for my $msg (@msg_split){
-      if ($msg =~ /$regex_opt/) {
-          my %matches_msg = (matches => $&,  before => $`, after => $');
-          push @msg_ref , (\%matches_msg);
-      }
+      warn "AAAAAAAAAAA" . encode("utf-8",$msg);
+      #  if ($msg =~ /$regex_opt/) {
+      #     my %matches_msg = (matches => $&,  before => $`, after => $');
+      #     push @msg_ref , (\%matches_msg);
+      # }
     }
   }else{
     if ($message =~ /$regex_opt/) {
         my %matches_msg = (matches => $&, before => $`, after => $');
         push @msg_ref , \%matches_msg;
+        say Dumper @msg_ref;
     }
-  }
+  }    
 
-    my $msg_refen = \@msg_ref;
-    my $msg_splits = \@msg_split;
+   my $msg_refen = \@msg_ref;
+   my $msg_splits = \@msg_split;
   
    $self->stash(regex => $regstr);
-   $self->stash(private => $private);   
+   $self->stash(judge_line => $judge_line);   
    $self->stash(msg_ref => $msg_refen);
    $self->stash(msg_split => $msg_splits);
    $self->stash(message => $message);

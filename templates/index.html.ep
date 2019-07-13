@@ -18,8 +18,8 @@
                 <%= text_area 'message', style => "width:740px; height:70px" %><br>
                 <div id="radio_layout">
                     <p>
-                        <%= radio_button private => 1 , checked => 'checked' %>改行有り
-                        <%= radio_button private => 0 %>改行無し
+                        <%= radio_button judge_line => 1 , checked => 'checked' %>改行有り
+                        <%= radio_button judge_line => 0 %>改行無し
                     </p>
                 </div>
         </div>
