@@ -45,18 +45,12 @@ post '/' => sub{
   my @msg_split;
   my $msg_len;
   if($judge_line){
-    @msg_split = split (/\x0A/, $message);
-
-    warn "aiueo" . $msg_split[0];
-
-    # warn "BBBBBBBBBB $message";
-    # warn "awjivagjirjijaireij"."\t".scalar(@msg_split);
+    @msg_split = split (/\x0D\x0A/, $message);
     for my $msg (@msg_split){
-      warn "AAAAAAAAAAA" . encode("utf-8",$msg);
-      #  if ($msg =~ /$regex_opt/) {
-      #     my %matches_msg = (matches => $&,  before => $`, after => $');
-      #     push @msg_ref , (\%matches_msg);
-      # }
+      if ($msg =~ /$regex_opt/) {
+          my %matches_msg = (matches => $&,  before => $`, after => $');
+          push @msg_ref , (\%matches_msg);
+      }
     }
   }else{
     if ($message =~ /$regex_opt/) {
