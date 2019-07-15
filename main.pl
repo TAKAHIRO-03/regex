@@ -63,12 +63,12 @@ post '/' => sub{
    my $msg_refen = \@msg_ref;
    my $msg_splits = \@msg_split;
   
-   $self->stash(regex => $regstr);
-   $self->stash(judge_line => $judge_line);   
-   $self->stash(msg_ref => $msg_refen);
-   $self->stash(msg_split => $msg_splits);
-   $self->stash(message => $message);
-   $self->render(template =>'result');
+    $self->stash(regex => $regstr);
+    $self->stash(judge_line => $judge_line);   
+    $self->stash(msg_ref => $msg_refen);
+    $self->stash(msg_split => $msg_splits);
+    $self->stash(message => $message);
+    $self->render(template =>'result');
 
 };
 
