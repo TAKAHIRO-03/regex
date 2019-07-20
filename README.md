@@ -7,6 +7,8 @@ PerlのフレームワークであるMojoliciousを使用して、Web上で正�
 
 テキストを入力、正規表現パターンを入力後、マッチ前後、マッチしたものを出力
 
+perl 5.30で動作確認済み
+
 
 ## Demo
 ![正規表現プロダクト](https://user-images.githubusercontent.com/43311555/61576317-9f7cdf00-ab13-11e9-8151-8af902824fb7.gif)
