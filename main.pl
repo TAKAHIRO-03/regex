@@ -1,13 +1,6 @@
 #!/usr/bin/env perl
 use Mojolicious::Lite;
-use warnings;
-use strict;
-use Encode qw/encode decode/;
-use utf8;
 use Data::Dumper;
-
-# binmode(STDOUT, ":utf8");
-# binmode(STDIN, ":utf8");
 
 get '/' => sub{
     my $self = shift;
@@ -63,24 +56,10 @@ post '/' => sub{
    my $msg_refen = \@msg_ref;
    my $msg_splits = \@msg_split;
   
-    $self->stash(regex => $regstr);
-    $self->stash(judge_line => $judge_line);   
-    $self->stash(msg_ref => $msg_refen);
-    $self->stash(msg_split => $msg_splits);
-    $self->stash(message => $message);
+    $self->stash(regex => $regstr, judge_line => $judge_line, 
+                    msg_ref => $msg_refen, msg_split => $msg_splits, message => $message);
     $self->render(template =>'result');
 
 };
-
-# get '/result' => sub{
-#     my $self = shift;
-#     $self->render('result');
-# };
-
-# post '/result' => sub{
-#     my $self = shift;
-#     $self->render('index');
-#     say "result押されたよ";
-# };
 
 app -> start;
